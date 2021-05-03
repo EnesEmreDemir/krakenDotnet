@@ -1,0 +1,35 @@
+version: '3.4'
+
+networks:
+  apigw:
+services:
+  productservice:
+    container_name: productservice
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5002:80"
+    networks:
+      - apigw
+
+  userservice:
+    container_name: userservice
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5001:80"
+    networks:
+      - apigw
+  krakendgateway:
+    container_name: krakendgateway
+    volumes:
+      - ./krakend:/etc/krakend
+    depends_on:
+      - userservice
+      - productservice
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8080:8080"
+    networks:
+      - apigw

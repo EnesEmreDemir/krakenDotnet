@@ -1,0 +1,167 @@
+{
+  "version": 2,
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "endpoints": [
+    {
+      "endpoint": "/users",
+      "backend": [
+        {
+          "host": [
+            "http://userservice"
+          ],
+          "url_pattern": "/api/users",
+          "is_collection": "true",
+          "extra_config": {},
+          "encoding": "json"
+        }
+      ],
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/users/{userId}",
+      "backend": [
+        {
+          "host": [
+            "http://userservice"
+          ],
+          "url_pattern": "/api/users/{userId}",
+          "extra_config": {},
+          "encoding": "json"
+        }
+      ],
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/users",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [
+            "http://userservice"
+          ],
+          "url_pattern": "/api/users",
+          "encoding": "json"
+        }
+      ]
+    },
+    {
+      "endpoint": "/users/{userId}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [
+            "http://userservice"
+          ],
+          "url_pattern": "/api/users/{userId}",
+          "encoding": "json"
+        }
+      ]
+    },
+    {
+      "endpoint": "/users/{userId}",
+      "method": "DELETE",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "host": [
+            "http://userservice"
+          ],
+          "url_pattern": "/api/users/{userId}",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/products",
+      "backend": [
+        {
+          "host": [
+            "http://productservice"
+          ],
+          "url_pattern": "/api/products",
+          "is_collection": "true",
+          "encoding": "json"
+        }
+      ],
+      "output_encoding": "json"
+    },
+    {
+      "endpoint": "/products/{productId}",
+      "backend": [
+        {
+          "host": [
+            "http://productservice"
+          ],
+          "url_pattern": "/api/products/{productId}",
+          "encoding": "json"
+        }
+      ],
+      "output_encoding": "json"
+    },
+    {
+      "endpoint": "/products",
+      "method": "POST",
+      "backend": [
+        {
+          "host": [
+            "http://productservice"
+          ],
+          "url_pattern": "/api/products",
+          "encoding": "json"
+        }
+      ],
+      "output_encoding": "json"
+    },
+    {
+      "endpoint": "/products/{productId}",
+      "method": "PUT",
+      "backend": [
+        {
+          "host": [
+            "http://productservice"
+          ],
+          "url_pattern": "/api/products/{productId}",
+          "encoding": "json"
+        }
+      ],
+      "output_encoding": "json"
+    },
+    {
+      "endpoint": "/products/{productId}",
+      "method": "DELETE",
+      "backend": [
+        {
+          "host": [
+            "http://productservice"
+          ],
+          "url_pattern": "/api/products/{productId}",
+          "encoding": "no-op"
+        }
+      ],
+      "output_encoding": "no-op"
+    }
+  ],
+  "extra_config": {
+    "github_com/devopsfaith/krakend-cors": {
+      "allow_methods": [
+        "GET",
+        "HEAD",
+        "POST",
+        "PUT",
+        "DELETE",
+        "CONNECT",
+        "OPTIONS",
+        "TRACE",
+        "PATCH"
+      ]
+    }
+  },
+  "output_encoding": "json"
+}
